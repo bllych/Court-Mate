@@ -1,95 +1,107 @@
+<?php
+session_start();
+require_once '../../db.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../../Account/index.php');
+    exit();
+}
+
+$user = getUserById($_SESSION['user_id']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Support</title>
-    <link rel="stylesheet" href="Users-page.css" />
-    <link rel="stylesheet" href="Headfoot.css" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="../../style/Users-page.css" />
+    <link rel="stylesheet" href="../../style/Headfoot.css" />
   </head>
 
     <header>
       <div class="logo">
-        <a href="../../index.php"><img src="logo.png" /></a>
+        <a href="../../index.php"><img src="../../Gambar/Header Foto/logo.png" /></a>
       </div>
       <div class="search-bar">
-        <img src="Header Foto/Search.png" alt="Search" />
+        <img src="../../Gambar/Header Foto/Search.png" alt="Search" />
         <input type="text" placeholder="Search..." />
       </div>
       <div class="lgokanan">
-        <a href=""
-          ><img src="Header Foto/Notif.png" alt="" style="margin-right: 35px"
-        /></a>
-        <a href="../Acc.php"><img src="Header Foto/User.png" alt="" /></a>
+        <a href=""><img src="../../Gambar/Header Foto/Notif.png" alt="" style="margin-right: 35px" /></a>
+        <a href="../../Account/index.php"><img src="../../Gambar/Header Foto/User.png" alt="" /></a>
       </div>
     </header>
 
     <!-- Navbar -->
     <nav>
-      <a href="Support.html"> <u>Support</u></a>
+      <a href="../../index.php">Home</a>
       <a href="#">Status</a>
-      <a href="#">Coaching</a>
-      <a href="#">Accessories</a>
-      <a href="#">Support</a>
-    </nav>   
-    
+      <a href="../../Isi/Coaching.php">Coaching</a>
+      <a href="../../Isi/Amos/Support.php"><u>Support</u></a>
+    </nav>
+
     <div class="profile-container">
     <div class="user-name-title">
-        <img src="Header Foto/User.png" alt="User Icon" class="user-title-icon" /> 
-        <h1><b>Puji</b></h1>
+        <img src="../../Gambar/Header Foto/User.png" alt="User Icon" class="user-title-icon" />
+        <h1><b><?php echo htmlspecialchars($user['name']); ?></b></h1>
     </div>
-    
+
     <div class="profile-card">
-        
+
         <div class="profile-left-column">
             <div class="profile-photo-area">
                 <div class="photo-placeholder">
                     <span class="cat-illustration"></span>
-                          <img src="Header Foto/User.png" alt="User Icon" class="cat-illustration" />  
+                          <img src="../../Gambar/Header Foto/User.png" alt="User Icon" class="cat-illustration" />
                 </div>
                 <button class="profile-button change-photo">Change Photo</button>
             </div>
-            
+
             <button class="profile-button"><b>Change Password</</button>
             <button class="profile-button"><b>Profile Password</b></button>
         </div>
-        
+
         <div class="profile-right-column">
             <h3 class="section-title">Account Profile</h3>
-            
+
             <div class="profile-detail-row">
                 <span class="label">Name</span>
-                <span class="value">Pujiyanto</span> 
+                <span class="value"><?php echo htmlspecialchars($user['name']); ?></span>
             </div>
             <div class="profile-detail-row">
                 <span class="label">Email</span>
-                <span class="value">puji@gmail.com</span> 
-            </div>
-            <div class="profile-detail-row">
-                <span class="label">Gender</span>
-                <span class="value link-value">Pria</span>  
+                <span class="value"><?php echo htmlspecialchars($user['email']); ?></span>
             </div>
             <div class="profile-detail-row">
                 <span class="label">Phone Number</span>
-                <span class="value link-value">+6212–5625–118</span>
+                <span class="value"><?php echo htmlspecialchars($user['phone'] ?? 'Not set'); ?></span>
             </div>
             <div class="profile-detail-row">
-                <span class="label">Address</span>
-                <span class="value link-value">Gg. Karya Baru Tengah No 10</span>
+                <span class="label">Role</span>
+                <span class="value"><?php echo htmlspecialchars($user['role']); ?></span>
             </div>
-            
+
             <h3 class="section-title change-profile-title">Change Profile</h3>
-            
-            <div class="profile-detail-row">
-                <span class="label">Email</span>
-                <span class="value">aseng@gmail.com <a href="#" class="change-link">change</a></span>
-            </div>
-            <div class="profile-detail-row">
-                <span class="label">Phone Number</span>
-                <span class="value link-value">+6212–5625–1188</span>
-            </div>
+
+            <form method="POST" action="update_profile.php">
+                <div class="profile-detail-row">
+                    <span class="label">Name</span>
+                    <input type="text" name="name" value="<?php echo htmlspecialchars($user['name']); ?>" class="value" required>
+                </div>
+                <div class="profile-detail-row">
+                    <span class="label">Email</span>
+                    <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" class="value" required>
+                </div>
+                <div class="profile-detail-row">
+                    <span class="label">Phone Number</span>
+                    <input type="text" name="phone" value="<?php echo htmlspecialchars($user['phone'] ?? ''); ?>" class="value">
+                </div>
+                <button type="submit" class="profile-button" style="margin-top: 20px;">Update Profile</button>
+            </form>
         </div>
     </div>
 </div>
-    
+
     <!-- Footer -->
     <footer>
       <div class="footer-box">
@@ -99,22 +111,22 @@
         <h3>|</h3>
         <div class="socials">
           <a href="https://www.instagram.com/"
-            ><img src="foto footer/Instagram.png" alt="Instagram"
+            ><img src="../../Gambar/foto footer/Instagram.png" alt="Instagram"
           /></a>
           <a href="https://x.com/"
-            ><img src="foto footer/Twitter.png" alt="Twitter"
+            ><img src="../../Gambar/foto footer/Twitter.png" alt="Twitter"
           /></a>
           <a href="https://web.whatsapp.com/"
-            ><img src="foto footer/Whatsapp.png" alt="WhatsApp"
+            ><img src="../../Gambar/foto footer/Whatsapp.png" alt="WhatsApp"
           /></a>
           <a href="https://www.tiktok.com/id-ID/"
-            ><img src="foto footer/Tiktok.png" alt="TikTok"
+            ><img src="../../Gambar/foto footer/Tiktok.png" alt="TikTok"
           /></a>
           <a href="https://mail.google.com/mail/u/0/"
-            ><img src="foto footer/email.png" alt="Email"
+            ><img src="../../Gambar/foto footer/email.png" alt="Email"
           /></a>
           <a href="https://www.youtube.com/watch?v=tL9yDq5hpgI"
-            ><img src="foto footer/Phone.png" alt="Phone"
+            ><img src="../../Gambar/foto footer/Phone.png" alt="Phone"
           /></a>
         </div>
       </div>
@@ -158,19 +170,19 @@
           <div class="payments1">
             <a href="https://gopay.co.id/"
               ><img
-                src="foto footer/bayar 1.png"
+                src="../../Gambar/foto footer/bayar 1.png"
                 alt="qris"
                 style="width: 110px; height: 50px"
             /></a>
             <a href="https://gopay.co.id/"
               ><img
-                src="foto footer/bayar 2.png"
+                src="../../Gambar/foto footer/bayar 2.png"
                 alt="gopay"
                 style="width: 150px; height: 45px"
             /></a>
             <a href="https://gopay.co.id/"
               ><img
-                src="foto footer/bayar 3.png"
+                src="../../Gambar/foto footer/bayar 3.png"
                 alt="mandiri"
                 style="width: 153px; height: 50px"
             /></a>
@@ -179,13 +191,13 @@
           <div class="payment2">
             <a href="https://gopay.co.id/"
               ><img
-                src="foto footer/bayar 4.png"
+                src="../../Gambar/foto footer/bayar 4.png"
                 alt="shopeepay"
                 style="width: 119px; height: 55px"
             /></a>
             <a href="https://gopay.co.id/"
               ><img
-                src="foto footer/bayar 5.png"
+                src="../../Gambar/foto footer/bayar 5.png"
                 alt="bca"
                 style="width: 118px; height: 55px"
             /></a>
@@ -194,8 +206,8 @@
       </div>
     </div>
 
-    <script src="Slideshow.js" defer></script>
+    <script src="../../Slideshow.js" defer></script>
 
-    
+
 </body>
 </html>

@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Log in - CourtMate</title>
-    <link rel="stylesheet" href="../../style/Acc.css" />
-    <link rel="stylesheet" href="../../style/Headfoot.css" />
+    <link rel="stylesheet" href="../style/Acc.css" />
+    <link rel="stylesheet" href="../style/Headfoot.css" />
   </head>
   <body>
     <!-- Main -->
@@ -29,12 +29,13 @@
           <div class="form-content">
             <div class="login-form">
               <div class="title">Login</div>
-              <form action="#">
+              <form action="login.php" method="POST">
                 <div class="input-boxes">
                   <div class="input-box">
                     <i class="fas fa-envelope"></i>
                     <input
                       type="text"
+                      name="email"
                       placeholder="Enter your email"
                       required
                     />
@@ -43,6 +44,7 @@
                     <i class="fas fa-lock"></i>
                     <input
                       type="password"
+                      name="password"
                       placeholder="Enter your password"
                       required
                     />
@@ -59,17 +61,27 @@
             </div>
             <div class="signup-form">
               <div class="title">Signup</div>
-              <form action="#">
+              <form action="signup.php" method="POST">
                 <div class="input-boxes">
                   <div class="input-box">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Enter your name" required />
+                    <input type="text" name="name" placeholder="Enter your name" required />
                   </div>
                   <div class="input-box">
                     <i class="fas fa-envelope"></i>
                     <input
                       type="text"
+                      name="email"
                       placeholder="Enter your email"
+                      required
+                    />
+                  </div>
+                  <div class="input-box">
+                    <i class="fas fa-phone"></i>
+                    <input
+                      type="text"
+                      name="phone"
+                      placeholder="Enter your phone"
                       required
                     />
                   </div>
@@ -77,6 +89,7 @@
                     <i class="fas fa-lock"></i>
                     <input
                       type="password"
+                      name="password"
                       placeholder="Enter your password"
                       required
                     />
