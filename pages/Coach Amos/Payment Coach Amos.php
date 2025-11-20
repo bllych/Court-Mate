@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Payment Coach</title>
+  <title>Payment Lapangan</title>
   <link rel="stylesheet" href="../../style/Headfoot.css" />
   <link rel="stylesheet" href="../../style/Payment Coach.css" />
 </head>
@@ -25,10 +25,10 @@
   <hr style="margin-top: 20px" />
   <!-- Navbar -->
   <nav>
-    <a href="../../index.php"> <u>Home</u></a>
+    <a href="../../index.php">Home</a>
     <a href="#">Status</a>
-    <a href="../../Isi/Coaching.php">Coaching</a>
-    <a href="#">Support</a>
+    <a href="../../Isi/Coaching.php"><u>Coaching</u></a>
+    <a href="../../Isi/Amos/SUpport.php">Support</a>
   </nav>
 
   <!-- Main -->
@@ -39,9 +39,47 @@
         <div class="inputf"><input type="text" placeholder="Full name" /></div>
         <div class="input-row">
           <div class="input-wrapper">
-            <input type="number" placeholder="Number" class="input-field" />
+            <div class="flag-section" id="toggleDropdown">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg" alt="flag"
+                class="flag" />
+              <div class="arrow"></div>
+            </div>
+            <input type="text" style="font-weight: bold;font: size 14px; border:none; margin-left: 10px;"
+              class="input-number" placeholder="Number" />
+
+            <!-- Dropdown -->
+            <div class="dropdown" id="dropdownMenu">
+              <input style="width:180px;" type="text" class="searchCountry" placeholder="Cari negara..." />
+              <ul id="countryList">
+                <li>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg" width="20" />
+                  Indonesia (+62)
+                </li>
+                <li>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg"
+                    width="20" />
+                  United States (+1)
+                </li>
+                <li>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_France.svg" width="20" />
+                  France (+33)
+                </li>
+                <li>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_India.svg" width="20" />
+                  India (+91)
+                </li>
+                <li>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" width="20" />
+                  Brazil (+55)
+                </li>
+              </ul>
+            </div>
           </div>
-          <input type="email" placeholder="Email" class="input-field" />
+
+          <div class="input-field">
+            <input type="email" placeholder="Email" />
+          </div>
+
         </div>
       </div>
 
@@ -81,6 +119,7 @@
 
     <!-- Bagian kanan -->
     <div class="right-side">
+
       <div class="coach-card">
         <img src="../Gambar/Coach/1.png" alt="Coach" />
       </div>
@@ -98,7 +137,7 @@
         <hr />
         <div class="cost-row total">
           <span>Total</span>
-          <span>Rp125.000</span>
+          <span>Rp 125.000</span>
         </div>
       </div>
 
@@ -186,6 +225,8 @@
       </div>
     </div>
   </div>
+
+  <script src="../../Isi/Js/Payment.js"></script>
 
 </body>
 

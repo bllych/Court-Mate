@@ -222,7 +222,6 @@
   </div>
 
   <script src="../../Isi/Js/Payment.js"></script>
-  <script src="../../Isi/Js/pop up.js"></script>
 
 </body>
 
